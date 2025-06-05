@@ -1,0 +1,25 @@
+# General
+.DS_Store
+Thumbs.db
+
+# Node (Angular)
+**/node_modules/
+**/dist/
+**/coverage/
+
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+*.vs/
+*.db
+*.tmp
+*.tmp_proj
+
+# Logs
+*.log
+
+# Environment
+.env
+appsettings.*.json
