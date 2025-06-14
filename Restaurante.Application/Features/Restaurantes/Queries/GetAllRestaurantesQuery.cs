@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Restaurante.Application.DTOs;
+using Restaurante.Application.Modelos;
 
 namespace Restaurante.Application.Features.Restaurantes.Queries
 {
-    public class GetAllRestaurantesQuery : IRequest<IEnumerable<RestauranteDto>> { }
+    public class GetAllRestaurantesQuery : IRequest<IEnumerable<RestauranteModelo>> { }
 }

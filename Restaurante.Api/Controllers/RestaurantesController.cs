@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Restaurante.Application.DTOs;
 using Restaurante.Application.Features.Restaurantes.Commands;
 using Restaurante.Application.Features.Restaurantes.Queries;
+using Restaurante.Application.Modelos;
 
 namespace Restaurante.Api.Controllers
 {
@@ -18,7 +18,7 @@ namespace Restaurante.Api.Controllers
         }
 
         [HttpGet("ConsultarTodos")]
-        public async Task<ActionResult<IEnumerable<RestauranteDto>>> ConsultarTodos()
+        public async Task<ActionResult<IEnumerable<RestauranteModelo>>> ConsultarTodos()
         {
             var result = await _mediator.Send(new GetAllRestaurantesQuery());
             return Ok(result);

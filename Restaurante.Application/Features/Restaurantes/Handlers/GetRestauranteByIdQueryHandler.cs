@@ -1,12 +1,12 @@
 ﻿using Dapper;
 using MediatR;
-using Restaurante.Application.DTOs;
 using Restaurante.Application.Features.Restaurantes.Queries;
+using Restaurante.Application.Modelos;
 using System.Data;
 
 namespace Restaurante.Application.Features.Restaurantes.Handlers
 {
-    public class GetRestauranteByIdQueryHandler : IRequestHandler<GetRestauranteByIdQuery, RestauranteDto?>
+    public class GetRestauranteByIdQueryHandler : IRequestHandler<GetRestauranteByIdQuery, RestauranteModelo?>
     {
         private readonly IDbConnection _connection;
 
@@ -14,12 +14,12 @@ namespace Restaurante.Application.Features.Restaurantes.Handlers
         {
             _connection = connection;
         }
-        public async Task<RestauranteDto?> Handle(GetRestauranteByIdQuery request, CancellationToken cancellationToken)
+        public async Task<RestauranteModelo?> Handle(GetRestauranteByIdQuery request, CancellationToken cancellationToken)
         {
             var parameters = new DynamicParameters();
             parameters.Add("id", request.Id);
 
-            var restaurante = await _connection.QueryFirstOrDefaultAsync<RestauranteDto>(
+            var restaurante = await _connection.QueryFirstOrDefaultAsync<RestauranteModelo>(
                 "sp_ObtenerRestaurantePorId",
                 parameters,
                 commandType: CommandType.StoredProcedure);

@@ -1,12 +1,12 @@
 ﻿using Dapper;
 using MediatR;
-using Restaurante.Application.DTOs;
 using Restaurante.Application.Features.Restaurantes.Queries;
+using Restaurante.Application.Modelos;
 using Restaurante.Domain.Data;
 
 namespace Restaurante.Application.Features.Restaurantes.Handlers
 {
-    public class GetAllRestaurantesHandler : IRequestHandler<GetAllRestaurantesQuery, IEnumerable<RestauranteDto>>
+    public class GetAllRestaurantesHandler : IRequestHandler<GetAllRestaurantesQuery, IEnumerable<RestauranteModelo>>
     {
         private readonly IConnectionFactory _connectionFactory;
 
@@ -14,12 +14,12 @@ namespace Restaurante.Application.Features.Restaurantes.Handlers
         {
             _connectionFactory = connectionFactory;
         }
-        public async Task<IEnumerable<RestauranteDto>> Handle(GetAllRestaurantesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<RestauranteModelo>> Handle(GetAllRestaurantesQuery request, CancellationToken cancellationToken)
         {
             using var connection = _connectionFactory.CreateConnection();
 
             var result =
-                await connection.QueryAsync<RestauranteDto>("sp_ObtenerRestaurantes", commandType: System.Data.CommandType.StoredProcedure);
+                await connection.QueryAsync<RestauranteModelo>("sp_ObtenerRestaurantes", commandType: System.Data.CommandType.StoredProcedure);
 
             return result;
         }
